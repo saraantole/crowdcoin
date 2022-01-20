@@ -12,7 +12,7 @@ export default function NewRequest() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const { campaignId } = router.query
+  const { query: { campaignId } } = router
 
   const onSubmit = async e => {
     e.preventDefault()
