@@ -1,10 +1,9 @@
 import { useRouter } from "next/router"
-import { useState } from "react/cjs/react.development"
+import { useState } from "react"
 import { Button, Table } from "semantic-ui-react"
 import web3 from "../utils/web3"
 
 export default function Request({ isManager, isContributor, request, campaign, id, totalContributors, account, campaignBalance }) {
-    const { Row, Cell } = Table
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
@@ -33,30 +32,30 @@ export default function Request({ isManager, isContributor, request, campaign, i
     const readyToFinalize = (request.approvalsCount > totalContributors / 2) && (request.value < campaignBalance)
 
     return (
-        <Row disabled={request.complete} positive={readyToFinalize && !request.complete}>
-            <Cell>{id}</Cell>
-            <Cell>{request.description}</Cell>
-            <Cell>{web3.utils.fromWei(request.value, 'ether')}</Cell>
-            <Cell>
+        <Table.Row disabled={request.complete} positive={readyToFinalize && !request.complete}>
+            <Table.Cell>{id}</Table.Cell>
+            <Table.Cell>{request.description}</Table.Cell>
+            <Table.Cell>{web3.utils.fromWei(request.value, 'ether')}</Table.Cell>
+            <Table.Cell>
                 <a href={`https://etherscan.io/address/${request.recipient}`} style={{ color: 'green' }}
-                    target='_blank' rel="noreferrer noopener" >{request.recipient}</a></Cell>
-            <Cell>{request.approvalsCount}/{totalContributors}</Cell>
-            {isContributor && !isManager && !request.complete && request.approvalsCount < totalContributors && <Cell>
+                    target='_blank' rel="noreferrer noopener" >{request.recipient}</a></Table.Cell>
+            <Table.Cell>{request.approvalsCount}/{totalContributors}</Table.Cell>
+            {isContributor && !isManager && !request.complete && request.approvalsCount < totalContributors && <Table.Cell>
                 <Button
                     color='green'
                     loading={loading} basic
                     onClick={onApprove}>
                     Approve
                 </Button>
-            </Cell>}
-            {isManager && !request.complete && readyToFinalize && <Cell>
+            </Table.Cell>}
+            {isManager && !request.complete && readyToFinalize && <Table.Cell>
                 <Button
                     color='green'
                     loading={loading} basic
                     onClick={onFinalize}>
                     Finalize
                 </Button>
-            </Cell>}
-        </Row>
+            </Table.Cell>}
+        </Table.Row>
     )
 }

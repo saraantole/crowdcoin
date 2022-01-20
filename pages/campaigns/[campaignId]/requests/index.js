@@ -1,7 +1,7 @@
 import { Button, Table } from "semantic-ui-react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { loadCampaignContract } from "../../../../utils/campaign";
 import web3 from "../../../../utils/web3";
 import Request from '../../../../components/request'
@@ -74,10 +74,10 @@ export default function Requests() {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {requests.map((request, index) => <Request campaignBalance={campaignBalance} isManager={isManager} isContributor={isContributor} account={account} key={index} totalContributors={totalContributors} id={index} request={request} campaign={campaign} />)}
+          {requests?.map((request, index) => <Request campaignBalance={campaignBalance} isManager={isManager} isContributor={isContributor} account={account} key={index} totalContributors={totalContributors} id={index} request={request} campaign={campaign} />)}
         </Table.Body>
       </Table>
-      <p>Found {requests.length} request{requests.length !== 1 && 's'}.</p>
+      <p>Found {requests?.length} request{requests?.length !== 1 && 's'}.</p>
     </div>
   )
 }
