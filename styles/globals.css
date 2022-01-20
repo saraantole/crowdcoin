@@ -13,11 +13,24 @@ a {
 
 * {
   box-sizing: border-box;
+  user-select: none;
+}
+
+h1, h2, h3 {
+  color: #4a4a4a;
 }
 
 #container {
   min-height: 100vh;
   width: 100%;
+}
+
+#header {
+  height: 70px;
+}
+
+#header .item {
+  border: none;
 }
 
 .bgWrap {
@@ -27,4 +40,40 @@ a {
   overflow: hidden;
   z-index: -1;
   opacity: 70%;
+}
+
+#home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#home h1 {
+  font-size: 72px;
+  letter-spacing: 1px;
+  margin: 20vh 0 40px 0;
+  text-align: center;
+}
+
+#campaigns-preview, #new-campaign, #campaign-details, #spending-request, #request {
+  padding: 10px 20px;
+}
+
+#campaigns-preview h2, #new-campaign h2, #campaign-details h2, #spending-request h2, #request h2  {
+  margin: 0;
+}
+
+#campaigns-preview h3, #new-campaign h3, #campaign-details h3, #spending-request h3, #request h3 {
+  margin: 10px 0 20px 0;
+  font-weight: 400;
+}
+
+.cards a {
+  color: green;
+}
+
+.cards a:hover {
+  opacity: 80%;
+  color: green;
 }

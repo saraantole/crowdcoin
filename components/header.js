@@ -5,7 +5,7 @@ import Logo from '../public/logo.png'
 
 export default function Header() {
     return (
-        <Menu>
+        <Menu id='header'>
             <Link href='/'><a className='item'>
                 <Image src={Logo} width={150} height={50} alt='logo'/>
                 </a></Link>

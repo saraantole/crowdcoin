@@ -12,8 +12,11 @@ export default function Campaigns() {
       const campaigns = await factory.methods.getDeployedCampaigns().call()
       setCampaigns(campaigns.map(campaignAddress => (
         {
-          header: campaignAddress,
-          description: <Link href={`/campaigns/${campaignAddress}`}><a>View Campaign</a></Link>,
+          header: '🌱 ' +
+            campaignAddress.split('').filter((_letter, index) => index < 5).join('')
+            + '...' +
+            campaignAddress.split('').filter((_letter, index) => index > campaignAddress.length - 6).join(''),
+          description: <Link href={`/campaigns/${campaignAddress}`}><a>View Campaign Details</a></Link>,
           fluid: true
         }
       )))
@@ -23,18 +26,19 @@ export default function Campaigns() {
   }, [factory])
 
   return (
-    <div>
-      <h3>Active Campaigns</h3>
+    <div id='campaigns-preview'>
       <Link href='/campaigns/new'><a>
         <Button
           content='Create Campaign'
           icon='add circle'
-          color='olive'
+          color='green'
           floated="right"
         />
       </a>
       </Link>
-      <Card.Group items={campaigns} />
+      <h2>Campaigns</h2>
+      <h3>Take a look at our active campaigns</h3>
+      <Card.Group stackable items={campaigns} itemsPerRow={3} className="cards" />
     </div>
   )
 }

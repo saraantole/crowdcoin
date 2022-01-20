@@ -51,13 +51,14 @@ export default function Requests() {
 
   const { Header, Row, HeaderCell, Body } = Table
   return (
-    <>
-      <h3>Requests</h3>
+    <div id='spending-request'>
+      <h2>Spending Requests</h2>
+      <h3>{isManager ? 'Check the status of your spending requests or create a new one.' : 'Check if there is any new spending request to review.'}</h3>
       {
         isManager &&
         <Link href={`/campaigns/${campaignId}/requests/new`}>
           <a>
-            <Button primary floated="right" style={{ marginBottom: '10px' }}>Add Request</Button>
+            <Button color="green" floated="right" style={{ marginBottom: '10px' }}>Add Request</Button>
           </a>
         </Link>
       }
@@ -69,7 +70,7 @@ export default function Requests() {
             <HeaderCell>Request Amount (ETH)</HeaderCell>
             <HeaderCell>Recipient</HeaderCell>
             <HeaderCell>Approval Count</HeaderCell>
-            {isContributor && <HeaderCell>Approve</HeaderCell>}
+            {isContributor && !isManager && <HeaderCell>Approve</HeaderCell>}
             {isManager && <HeaderCell>Finalize</HeaderCell>}
           </Row>
         </Header>
@@ -78,6 +79,6 @@ export default function Requests() {
         </Body>
       </Table>
       <p>Found {requests.length} request{requests.length !== 1 && 's'}.</p>
-    </>
+    </div>
   )
 }

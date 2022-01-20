@@ -30,7 +30,7 @@ export default function Request({ isManager, isContributor, request, campaign, i
         setLoading(false)
     }
 
-    const readyToFinalize = (request.approvalsCount > totalContributors / 2)  && (request.value < campaignBalance)
+    const readyToFinalize = (request.approvalsCount > totalContributors / 2) && (request.value < campaignBalance)
 
     return (
         <Row disabled={request.complete} positive={readyToFinalize && !request.complete}>
@@ -38,10 +38,10 @@ export default function Request({ isManager, isContributor, request, campaign, i
             <Cell>{request.description}</Cell>
             <Cell>{web3.utils.fromWei(request.value, 'ether')}</Cell>
             <Cell>
-                <a href={`https://etherscan.io/address/${request.recipient}`}
+                <a href={`https://etherscan.io/address/${request.recipient}`} style={{ color: 'green' }}
                     target='_blank' rel="noreferrer noopener" >{request.recipient}</a></Cell>
             <Cell>{request.approvalsCount}/{totalContributors}</Cell>
-            {isContributor && !request.complete && request.approvalsCount < totalContributors && <Cell>
+            {isContributor && !isManager && !request.complete && request.approvalsCount < totalContributors && <Cell>
                 <Button
                     color='green'
                     loading={loading} basic

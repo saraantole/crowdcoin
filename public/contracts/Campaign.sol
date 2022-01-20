@@ -70,6 +70,7 @@ contract Campaign {
     function approveRequest(uint256 requestIndex) public {
         Request storage currentRequest = requests[requestIndex]; //storage because we want to manipulate the original Request struct, not create a copy
 
+        require(msg.sender != manager);
         require(approvers[msg.sender]);
         require(!currentRequest.approvals[msg.sender]);
 

@@ -11,7 +11,7 @@ export const loadFactoryContract = async () => {
         const factory = new web3.eth.Contract(abi, contractAddress) // new instance of the contract for client ui
         return factory
     } catch (e) {
-        alert('Contract not deployed to the current network. Please select Kovan network with Metamask.')
+        alert('Contract not deployed to the current network. Please select Ropsten network with Metamask.')
         return null
     }
 }

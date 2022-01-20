@@ -33,17 +33,19 @@ export default function Contribute({ campaign }) {
 
     return (
         <Form onSubmit={onSubmit} error={!!error}>
-            <Form.Field>
+            <Form.Field required width={15}>
                 <label>Amount to Contribute</label>
                 <Input
+                    disabled={loading}
+                    type='number'
                     label='eth'
                     labelPosition="right"
                     value={amount}
-                    onChange={e => setAmount(e.target.value)}
+                    onChange={e => { setError(''); setAmount(e.target.value) }}
                 />
             </Form.Field>
             <Message header='Oops!' error content={error} />
-            <Button loading={loading} primary>Contribute!</Button>
+            <Button loading={loading} color='green'>Contribute!</Button>
         </Form>
     )
 }

@@ -38,25 +38,26 @@ export default function NewRequest() {
 
 
   return (
-    <>
-      <Link href={`/campaigns/${campaignId}/requests`}><a>Back</a></Link>
-      <h3>Create a Request</h3>
+    <div id='request'>
+      <Link href={`/campaigns/${campaignId}/requests`}><a style={{ color: 'black', float: 'right', textDecoration: 'underline' }}>Back</a></Link>
+      <h2>Create a New Spending Request</h2>
+      <h3>Fill in this form to create a new request to withdraw money from the balance.</h3>
       <Form onSubmit={onSubmit} error={!!error}>
-        <Form.Field>
+        <Form.Field required>
           <label>Description</label>
-          <Input value={description} onChange={e => setDescription(e.target.value)} />
+          <Input type="text" disabled={loading} value={description} onChange={e => { setError(''); setDescription(e.target.value) }} />
         </Form.Field>
-        <Form.Field>
+        <Form.Field required>
           <label>Amount (ETH)</label>
-          <Input value={amount} onChange={e => setAmount(e.target.value)} />
+          <Input type="number" disabled={loading} value={amount} onChange={e => { setError(''); setAmount(e.target.value) }} />
         </Form.Field>
-        <Form.Field>
+        <Form.Field required>
           <label>Recipient Address</label>
-          <Input value={recipient} onChange={e => setRecipient(e.target.value)} />
+          <Input type="text" disabled={loading} value={recipient} onChange={e => { setError(''); setRecipient(e.target.value) }} />
         </Form.Field>
         <Message error content={error} header='Oops!' />
-        <Button loading={loading} primary>Create!</Button>
+        <Button loading={loading} color="green">Create Request!</Button>
       </Form>
-    </>
+    </div>
   )
 }

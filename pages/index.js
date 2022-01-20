@@ -1,30 +1,29 @@
-import { Card, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import Link from "next/link"
 
 export default function Home() {
-
-
   return (
-    <div>
-      <h3>CrowdCoin, where ideas come true.</h3>
-      <Link href='/campaigns/new'><a>
-        <Button
-          content='Create Campaign'
-          icon='add circle'
-          color='green'
-          floated="right"
-        />
-      </a>
-      </Link>
-      <Link href='/campaigns'><a>
-        <Button
-          content='Explore Campaigns'
-          icon='arrow right'
-          color='green'
-          floated="right"
-        />
-      </a>
-      </Link>
+    <div id='home'>
+      <h1>Where <em style={{ color: '#21ba45' }}>ideas</em> come true.</h1>
+      <div>
+        <Link href='/campaigns'><a>
+          <Button
+            content=' Explore Campaigns'
+            icon='angle right'
+            color='green'
+          />
+        </a>
+        </Link>
+        <Link href='/campaigns/new'><a>
+          <Button
+            style={{ marginLeft: '10px' }}
+            content='Create Campaign'
+            icon='add circle'
+            color='green'
+          />
+        </a>
+        </Link>
+      </div>
     </div>
   )
 }

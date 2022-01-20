@@ -31,18 +31,21 @@ export default function NewCampaign() {
   }
 
   return (
-    <div>
-      <h3>Create a Campaign</h3>
+    <div id='new-campaign'>
+      <h2>Create a New Campaign</h2>
+      <h3>Set a <strong>minimum amount of Wei</strong> that contributors will need to give to participate in the campaign.</h3>
       <Form onSubmit={onSubmit} error={!!error}>
-        <Form.Field>
+        <Form.Field disabled={loading} required>
           <label>Minimum Contribution</label>
           <Input
+            type='number'
+            fluid
             value={minimumContribution}
-            onChange={e => setMinimumContribution(e.target.value)}
+            onChange={e => { setError(''); setMinimumContribution(e.target.value) }}
             label='wei' labelPosition="right" />
         </Form.Field>
         <Message error header='Oops!' content={error} />
-        <Button loading={loading} primary>Create</Button>
+        <Button loading={loading} color='green'>Create Campaign</Button>
       </Form>
     </div>
   )
