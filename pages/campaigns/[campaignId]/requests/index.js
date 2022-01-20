@@ -49,7 +49,6 @@ export default function Requests() {
     campaignId && getCampaignContract()
   }, [campaignId])
 
-  const { Header, Row, HeaderCell, Body } = Table
   return (
     <div id='spending-request'>
       <h2>Spending Requests</h2>
@@ -63,20 +62,20 @@ export default function Requests() {
         </Link>
       }
       <Table>
-        <Header>
-          <Row>
-            <HeaderCell>ID</HeaderCell>
-            <HeaderCell>Description</HeaderCell>
-            <HeaderCell>Request Amount (ETH)</HeaderCell>
-            <HeaderCell>Recipient</HeaderCell>
-            <HeaderCell>Approval Count</HeaderCell>
-            {isContributor && !isManager && <HeaderCell>Approve</HeaderCell>}
-            {isManager && <HeaderCell>Finalize</HeaderCell>}
-          </Row>
-        </Header>
-        <Body>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>ID</Table.HeaderCell>
+            <Table.HeaderCell>Description</Table.HeaderCell>
+            <Table.HeaderCell>Request Amount (ETH)</Table.HeaderCell>
+            <Table.HeaderCell>Recipient</Table.HeaderCell>
+            <Table.HeaderCell>Approval Count</Table.HeaderCell>
+            {isContributor && !isManager && <Table.HeaderCell>Approve</Table.HeaderCell>}
+            {isManager && <Table.HeaderCell>Finalize</Table.HeaderCell>}
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
           {requests.map((request, index) => <Request campaignBalance={campaignBalance} isManager={isManager} isContributor={isContributor} account={account} key={index} totalContributors={totalContributors} id={index} request={request} campaign={campaign} />)}
-        </Body>
+        </Table.Body>
       </Table>
       <p>Found {requests.length} request{requests.length !== 1 && 's'}.</p>
     </div>
