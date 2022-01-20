@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import { Button, Form, Input, Message } from "semantic-ui-react";
 import { loadCampaignContract } from "../../../../utils/campaign";
 import web3 from "../../../../utils/web3";
@@ -12,7 +12,7 @@ export default function NewRequest() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const { query: { campaignId } } = router
+  const { campaignId } = router.query
 
   const onSubmit = async e => {
     e.preventDefault()
