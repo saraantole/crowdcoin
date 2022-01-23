@@ -16,6 +16,7 @@ const FactoryContextProvider = ({ children }) => {
   }
 
   typeof window !== 'undefined' && window.ethereum.on('accountsChanged', () => location.reload())
+  typeof window !== 'undefined' && window.ethereum.on('chainChanged', () => location.reload())
 
   return (
     <FactoryContext.Provider value={factory}>
